@@ -1,9 +1,10 @@
 require 'pry'
-class School 
-  attr_accessor :roster, :name 
+
+class School
+  attr_accessor :roster
   
-  def initialize(name)
-    @name = name 
+  def initialize(name) 
+    @name = name
     @roster = {}
   end
   
@@ -13,23 +14,15 @@ class School
   end
   
   def grade(grade)
-    new_arr = []
-    @roster.select do |key, value| 
-      if key == grade 
-         new_arr << value
-      #binding.pry
-      end
-    end
-    new_arr.flatten
+    arr = []
+    @roster.each {|key, value| arr << value if key == grade}
+    arr.flatten
   end
   
-  def sort 
-    new_hash = {}
-    @roster.each do |grade, name|
-      new_hash[grade] = name.sort!
-    end
-    new_hash
+  def sort
+    arr = {}
+    @roster.map {|k, v| arr[k] = v.sort!}
+    arr
   end
-  
   
 end
